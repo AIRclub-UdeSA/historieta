@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La historieta de AIR Club</title>
+<meta name="description" content="Las caricaturas que se postean en los repos de AIRclub-UdeSA, en el orden en que aparecieron.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='5' width='26' height='18' rx='2' fill='%23fff6c9' stroke='%231a1216' stroke-width='3'/><path d='M9 22l-2 7 8-6' fill='%23fff6c9' stroke='%231a1216' stroke-width='3' stroke-linejoin='round'/><circle cx='11' cy='14' r='2' fill='%23b3134f'/><circle cx='16' cy='14' r='2' fill='%23b3134f'/><circle cx='21' cy='14' r='2' fill='%23b3134f'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papel: #f4efe4;
+    --puntos: rgba(26, 18, 22, 0.07);
+    --tinta: #1a1216;
+    --tinta-suave: #5b4f53;
+    --marco: #1a1216;
+    --globo: #fff6c9;
+    --acento: #b3134f;
+    --acento-tinta: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel: #141012;
+      --puntos: rgba(255, 255, 255, 0.05);
+      --tinta: #f1e9ec;
+      --tinta-suave: #b4a6ab;
+      --marco: #f1e9ec;
+      --globo: #2a2326;
+      --acento: #e0306f;
+      --acento-tinta: #ffffff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --papel: #141012;
+    --puntos: rgba(255, 255, 255, 0.05);
+    --tinta: #f1e9ec;
+    --tinta-suave: #b4a6ab;
+    --marco: #f1e9ec;
+    --globo: #2a2326;
+    --acento: #e0306f;
+    --acento-tinta: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background-color: var(--papel);
+    background-image: radial-gradient(var(--puntos) 1.2px, transparent 1.3px);
+    background-size: 9px 9px;
+    color: var(--tinta);
+    font: 16px/1.5 "IBM Plex Sans", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+
+  .tapa {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 16px 24px;
+  }
+  .tapa .sello {
+    display: inline-block;
+    font: 500 12px/1 "IBM Plex Mono", monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--acento);
+    color: var(--acento-tinta);
+    padding: 6px 10px;
+    transform: rotate(-2deg);
+  }
+  h1 {
+    font-family: "Bangers", "Impact", sans-serif;
+    font-weight: 400;
+    font-size: clamp(56px, 13vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin: 18px 0 14px;
+  }
+  h1 span { color: var(--acento); }
+  .tapa p {
+    max-width: 56ch;
+    margin: 0;
+    color: var(--tinta-suave);
+  }
+  .tapa .cuenta {
+    margin-top: 14px;
+    font: 500 13px/1.4 "IBM Plex Mono", monospace;
+    color: var(--tinta-suave);
+  }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 16px 96px;
+  }
+  .capitulo {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 64px 0 22px;
+  }
+  .capitulo h2 {
+    font-family: "Bangers", "Impact", sans-serif;
+    font-weight: 400;
+    font-size: clamp(32px, 7vw, 48px);
+    letter-spacing: 0.03em;
+    margin: 0;
+    line-height: 1;
+  }
+  .capitulo .n {
+    font: 500 12px/1 "IBM Plex Mono", monospace;
+    color: var(--tinta-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .capitulo::after {
+    content: "";
+    flex: 1;
+    border-top: 3px solid var(--marco);
+    transform: translateY(-6px);
+  }
+
+  .vineta {
+    margin: 0 0 40px;
+    position: relative;
+  }
+  .vineta .cuadro {
+    display: block;
+    border: 3px solid var(--marco);
+    box-shadow: 6px 6px 0 var(--marco);
+    background: var(--marco);
+    overflow: hidden;
+  }
+  .vineta img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--globo);
+  }
+  .vineta figcaption {
+    position: relative;
+    margin: -18px 0 0 14px;
+    max-width: calc(100% - 28px);
+    width: fit-content;
+    background: var(--globo);
+    border: 3px solid var(--marco);
+    padding: 8px 12px 9px;
+    font-size: 14px;
+    line-height: 1.4;
+    z-index: 1;
+  }
+  .vineta .num {
+    font: 500 12px/1 "IBM Plex Mono", monospace;
+    color: var(--acento);
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .vineta .alt { font-weight: 600; display: block; }
+  .vineta .origen { color: var(--tinta-suave); }
+  .vineta .origen a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .vineta .origen a:hover { color: var(--acento); }
+
+  .vacio, .error {
+    font: 500 14px/1.5 "IBM Plex Mono", monospace;
+    color: var(--tinta-suave);
+    padding: 40px 0;
+  }
+
+  footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+    font-size: 13px;
+    color: var(--tinta-suave);
+  }
+
+  @media (max-width: 560px) {
+    .tapa { padding-top: 36px; }
+    .vineta .cuadro { box-shadow: 4px 4px 0 var(--marco); }
+    .vineta figcaption { margin-left: 8px; max-width: calc(100% - 16px); }
+  }
+</style>
+</head>
+<body>
+  <header class="tapa">
+    <span class="sello">AIRclub-UdeSA</span>
+    <h1>La <span>historieta</span></h1>
+    <p>Cada caricatura que alguien deja en un comentario o review de los repos del club termina acá, en el orden en que apareció.</p>
+    <div class="cuenta" id="cuenta"></div>
+  </header>
+
+  <main id="tira">
+    <div class="vacio">Cargando viñetas…</div>
+  </main>
+
+  <footer>
+    Se arma sola: <a href="https://github.com/AIRclub-UdeSA/historieta">AIRclub-UdeSA/historieta</a>.
+  </footer>
+
+<script>
+  const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  const TIPOS = { comment: "comentario", review: "review", inline: "comentario en el código", "pr-body": "descripción", "issue-body": "descripción" };
+
+  function el(tag, attrs = {}, ...hijos) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    for (const h of hijos) n.append(h);
+    return n;
+  }
+
+  function fecha(iso) {
+    const d = new Date(iso);
+    return `${d.getDate()} ${MESES[d.getMonth()].slice(0, 3)} ${d.getFullYear()}`;
+  }
+
+  async function cargar(ruta, porDefecto) {
+    try {
+      const r = await fetch(ruta, { cache: "no-cache" });
+      return r.ok ? await r.json() : porDefecto;
+    } catch {
+      return porDefecto;
+    }
+  }
+
+  (async () => {
+    const tira = document.getElementById("tira");
+    const [imagenes, excluidas] = await Promise.all([
+      cargar("data/imagenes.json", null),
+      cargar("data/excluidas.json", []),
+    ]);
+    if (!imagenes) {
+      tira.replaceChildren(el("div", { class: "error" }, "No se pudieron cargar las viñetas."));
+      return;
+    }
+    const fuera = new Set(excluidas);
+    const lista = imagenes
+      .filter((x) => !fuera.has(x.sha256) && !fuera.has(x.archivo))
+      .sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+    document.getElementById("cuenta").textContent =
+      lista.length ? `${lista.length} viñetas · desde el ${fecha(lista[0].fecha)}` : "";
+    if (!lista.length) {
+      tira.replaceChildren(el("div", { class: "vacio" }, "Todavía no hay viñetas."));
+      return;
+    }
+
+    const partes = [];
+    let mesActual = "";
+    let capitulo = 0;
+    lista.forEach((x, i) => {
+      const d = new Date(x.fecha);
+      const mes = `${d.getFullYear()}-${d.getMonth()}`;
+      if (mes !== mesActual) {
+        mesActual = mes;
+        capitulo++;
+        const titulo = MESES[d.getMonth()][0].toUpperCase() + MESES[d.getMonth()].slice(1) + " " + d.getFullYear();
+        partes.push(el("div", { class: "capitulo" },
+          el("span", { class: "n" }, `Cap. ${capitulo}`),
+          el("h2", {}, titulo)));
+      }
+      const donde = `${x.repo}${x.num ? " #" + x.num : ""}`;
+      const alt = x.alt || `Viñeta ${i + 1}, de @${x.autor} en ${donde}`;
+      const caption = el("figcaption", {},
+        el("span", { class: "num" }, `#${String(i + 1).padStart(2, "0")} · ${fecha(x.fecha)}`));
+      if (x.alt) caption.append(el("span", { class: "alt" }, x.alt));
+      caption.append(el("span", { class: "origen" },
+        `@${x.autor}, ${TIPOS[x.tipo] || x.tipo} en `,
+        el("a", { href: x.url, target: "_blank", rel: "noopener" }, donde)));
+      partes.push(el("figure", { class: "vineta", id: `v${i + 1}` },
+        el("a", { class: "cuadro", href: x.archivo, target: "_blank", rel: "noopener" },
+          el("img", {
+            src: x.archivo, alt, loading: i < 2 ? "eager" : "lazy", decoding: "async",
+            ...(x.ancho && x.alto ? { width: x.ancho, height: x.alto } : {}),
+          })),
+        caption));
+    });
+    tira.replaceChildren(...partes);
+  })();
+</script>
+</body>
+</html>

@@ -18,6 +18,27 @@ function extension(buf) {
   return null;
 }
 
+// Ancho y alto para que la página reserve el lugar de cada viñeta antes de bajarla.
+function medidas(buf, ext) {
+  if (ext === "png") return [buf.readUInt32BE(16), buf.readUInt32BE(20)];
+  if (ext === "gif") return [buf.readUInt16LE(6), buf.readUInt16LE(8)];
+  if (ext === "webp" && buf.subarray(12, 16).toString() === "VP8X") {
+    return [1 + buf.readUIntLE(24, 3), 1 + buf.readUIntLE(27, 3)];
+  }
+  if (ext === "jpg") {
+    let i = 2;
+    while (i < buf.length) {
+      const marca = buf[i + 1];
+      const largo = buf.readUInt16BE(i + 2);
+      if (marca >= 0xc0 && marca <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marca)) {
+        return [buf.readUInt16BE(i + 7), buf.readUInt16BE(i + 5)];
+      }
+      i += 2 + largo;
+    }
+  }
+  return [null, null];
+}
+
 let nuevas = 0;
 for (const { src, alt } of datos.imagenes) {
   const url = src.startsWith("/") ? "https://github.com" + src : src;
@@ -44,7 +65,8 @@ for (const { src, alt } of datos.imagenes) {
   const archivo = `archivo/${datos.fecha.slice(0, 10)}-${datos.repo}-${datos.num ?? "x"}-${sha256.slice(0, 10)}.${ext}`;
   fs.mkdirSync("archivo", { recursive: true });
   fs.writeFileSync(archivo, buf);
-  lista.push({ archivo, sha256, src, alt, repo: datos.repo, num: datos.num, tipo: datos.tipo, autor: datos.autor, fecha: datos.fecha, url: datos.url });
+  const [ancho, alto] = medidas(buf, ext);
+  lista.push({ archivo, sha256, ancho, alto, src, alt, repo: datos.repo, num: datos.num, tipo: datos.tipo, autor: datos.autor, fecha: datos.fecha, url: datos.url });
   vistos.add(sha256);
   nuevas++;
   console.log(`guardada ${archivo}`);
