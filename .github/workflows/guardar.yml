@@ -1,0 +1,41 @@
+name: guardar
+
+on:
+  repository_dispatch:
+    types: [imagen-nueva]
+  workflow_dispatch:
+    inputs:
+      datos:
+        description: "JSON con {repo,num,tipo,autor,fecha,url,imagenes:[{src,alt}]}"
+        required: true
+
+# Un guardado a la vez, para que dos comentarios seguidos no choquen al hacer push.
+concurrency:
+  group: guardar
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  guardar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Descargar y archivar
+        env:
+          DATOS: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload.datos) || inputs.datos }}
+        run: node scripts/guardar.mjs "$DATOS"
+      - name: Commit
+        env:
+          ORIGEN: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.datos.url || 'carga manual' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archivo data
+          git diff --cached --quiet && exit 0
+          git commit -m "archivo: imágenes de $ORIGEN"
+          git push
