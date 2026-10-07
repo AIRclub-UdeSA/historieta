@@ -131,9 +131,3 @@ En la página de la App, **Private keys → Generate a private key**. Después a
 - **El push del bot es rechazado:** revisá que la App siga como excepción del ruleset "Protect main" (**Settings → Rules → Rulesets**).
 - **Un adjunto da 404 al descargarlo:** algunos adjuntos (`user-attachments`) solo se pueden bajar con un token aunque el repo sea público. `guardar.mjs` reintenta con el token de Actions. Si aun así da 404, la imagen fue borrada.
 - **El barrido recupera imágenes seguido:** el camino en vivo está fallando. Empezá por Recent Deliveries.
-
-## Pendiente
-
-- [#2](https://github.com/AIRclub-UdeSA/historieta/issues/2): armar la página como una historieta, con varias viñetas por página y efecto de pasar de página.
-- [#3](https://github.com/AIRclub-UdeSA/historieta/issues/3): conectar el proyecto de Vercel al repo.
-- Todavía no se probó guardar un adjunto subido en un repo privado (por ejemplo, `jar_organizacion`).
