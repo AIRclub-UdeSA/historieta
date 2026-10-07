@@ -15,13 +15,24 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   guardar:
     runs-on: ubuntu-latest
     steps:
+      # main está protegida: solo la App airclub-historieta puede pushear directo (excepción del ruleset).
+      - name: Token de la App para escribir en historieta
+        id: escritura
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.HISTORIETA_APP_ID }}
+          private-key: ${{ secrets.HISTORIETA_APP_PRIVATE_KEY }}
+          repositories: historieta
+          permission-contents: write
       - uses: actions/checkout@v5
+        with:
+          token: ${{ steps.escritura.outputs.token }}
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -34,8 +45,8 @@ jobs:
         env:
           ORIGEN: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.datos.url || 'carga manual' }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "airclub-historieta[bot]"
+          git config user.email "339344225+airclub-historieta[bot]@users.noreply.github.com"
           git add archivo data
           git diff --cached --quiet && exit 0
           git commit -m "archivo: imágenes de $ORIGEN"
