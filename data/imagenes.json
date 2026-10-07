@@ -740,5 +740,19 @@
     "autor": "juan-kaplan",
     "fecha": "2026-10-07T21:01:34Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/47#pullrequestreview-5448310329"
+  },
+  {
+    "archivo": "archivo/2026-10-07-airclub-site-48-1c79f1ed5e.jpg",
+    "sha256": "1c79f1ed5e465030b2f70bfe54f31d527ff6ed0ceaacf293c181d955492a6ac7",
+    "ancho": 1376,
+    "alto": 768,
+    "src": "https://github.com/AIRclub-UdeSA/airclub-site/blob/review-assets/pr-48/pr-48/raphael-terminator-nav-toggle.jpg?raw=true",
+    "alt": "Raphael y Terminator probando la nueva barra y el toggle de tema",
+    "repo": "airclub-site",
+    "num": 48,
+    "tipo": "review",
+    "autor": "juan-kaplan",
+    "fecha": "2026-10-07T21:22:50Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/48#pullrequestreview-5448526182"
   }
 ]
