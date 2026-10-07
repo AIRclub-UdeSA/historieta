@@ -27,6 +27,7 @@ jobs:
           node-version: 24
       - name: Descargar y archivar
         env:
+          GH_TOKEN: ${{ github.token }}
           DATOS: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload.datos) || inputs.datos }}
         run: node scripts/guardar.mjs "$DATOS"
       - name: Commit

@@ -22,7 +22,11 @@ let nuevas = 0;
 for (const { src, alt } of datos.imagenes) {
   const url = src.startsWith("/") ? "https://github.com" + src : src;
   if (BOTS.test(url)) continue;
-  const r = await fetch(url, { redirect: "follow" });
+  let r = await fetch(url, { redirect: "follow" });
+  // Algunos adjuntos (user-attachments) dan 404 sin sesión aunque el repo sea público.
+  if (r.status === 404 && process.env.GH_TOKEN) {
+    r = await fetch(url, { redirect: "follow", headers: { Authorization: `token ${process.env.GH_TOKEN}` } });
+  }
   if (!r.ok) {
     console.log(`::warning::no se pudo descargar (${r.status}): ${url}`);
     continue;
