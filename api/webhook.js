@@ -42,6 +42,8 @@ async function tokenDeInstalacion(instalacion) {
   const r = await fetch(`https://api.github.com/app/installations/${instalacion}/access_tokens`, {
     method: "POST",
     headers: { Authorization: `Bearer ${jwt}`, Accept: "application/vnd.github+json" },
+    // Aunque la App esté instalada en toda la org, este token solo puede escribir en historieta.
+    body: JSON.stringify({ repositories: ["historieta"], permissions: { contents: "write" } }),
   });
   if (!r.ok) throw new Error(`token de instalación: ${r.status} ${await r.text()}`);
   return (await r.json()).token;
