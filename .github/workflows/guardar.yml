@@ -39,4 +39,5 @@ jobs:
           git add archivo data
           git diff --cached --quiet && exit 0
           git commit -m "archivo: imágenes de $ORIGEN"
+          git pull --rebase
           git push

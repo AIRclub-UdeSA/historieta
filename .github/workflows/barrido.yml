@@ -1,0 +1,76 @@
+name: barrido
+
+# Respaldo de la App: una vez por día busca imágenes que no hayan llegado por el webhook.
+on:
+  schedule:
+    - cron: "17 6 * * *" # 03:17 en Argentina
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Cuántos días hacia atrás revisar"
+        default: "3"
+      simular:
+        description: "Solo listar lo que encontraría, sin guardar"
+        type: boolean
+        default: false
+
+# Comparte el grupo con "guardar" para que no choquen al hacer push.
+concurrency:
+  group: guardar
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  barrido:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Token de la App
+        id: app
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: AIRclub-UdeSA
+          # Solo lectura: este token no escribe en ningún repo.
+          permission-issues: read
+          permission-pull-requests: read
+          permission-metadata: read
+      - name: Buscar imágenes sin archivar
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          DIAS: ${{ inputs.dias || '3' }}
+        run: node scripts/barrer.mjs "$DIAS"
+      - name: Guardar
+        if: ${{ !inputs.simular }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          while IFS= read -r datos; do
+            [ -n "$datos" ] && node scripts/guardar.mjs "$datos"
+          done < pendientes.jsonl
+      - name: Resumen
+        run: |
+          n=$(grep -c . pendientes.jsonl || true)
+          if [ "$n" -gt 0 ]; then
+            echo "### ⚠️ El barrido encontró $n comentario(s) que no habían llegado por la App" >> "$GITHUB_STEP_SUMMARY"
+            echo "Si se repite, revisar el webhook en Vercel y las entregas de la App." >> "$GITHUB_STEP_SUMMARY"
+            sed 's/.*"url":"\([^"]*\)".*/- \1/' pendientes.jsonl >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Sin novedades: todo lo de los últimos días ya estaba archivado." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Commit
+        if: ${{ !inputs.simular }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archivo data
+          git diff --cached --quiet && exit 0
+          git commit -m "archivo: imágenes recuperadas por el barrido diario"
+          git pull --rebase
+          git push
