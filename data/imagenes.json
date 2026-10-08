@@ -866,5 +866,19 @@
     "autor": "juan-kaplan",
     "fecha": "2026-10-07T21:22:50Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/48#pullrequestreview-5448526182"
+  },
+  {
+    "archivo": "archivo/2026-10-08-jar_organizacion-24-cba03e2e42.png",
+    "sha256": "cba03e2e4220ef7e78e9310df062145403135c8e4b136fc3747387a38b7c8f40",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/76d1e523-135d-4541-9e1b-df4ddeea9889",
+    "alt": "image",
+    "repo": "jar_organizacion",
+    "num": 24,
+    "tipo": "comment",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-08T01:00:51Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/24#issuecomment-6049982390"
   }
 ]
