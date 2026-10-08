@@ -39,6 +39,34 @@ function medidas(buf, ext) {
   return [null, null];
 }
 
+// Ruta de la API del comentario, review o descripción a partir de su link.
+function rutaApi({ repo, num, url }) {
+  const base = `repos/AIRclub-UdeSA/${repo}`;
+  let m;
+  if ((m = /#issuecomment-(\d+)/.exec(url))) return `${base}/issues/comments/${m[1]}`;
+  if ((m = /#pullrequestreview-(\d+)/.exec(url))) return `${base}/pulls/${num}/reviews/${m[1]}`;
+  if ((m = /#discussion_r(\d+)/.exec(url))) return `${base}/pulls/comments/${m[1]}`;
+  return /\/pull\/\d+/.test(url) ? `${base}/pulls/${num}` : `${base}/issues/${num}`;
+}
+
+// Los adjuntos subidos cuando un repo era privado siguen siendo privados: GitHub no los sirve
+// desde el link del comentario, ni con token. Solo desde un link firmado y temporal que aparece
+// en el HTML del comentario, que se pide a la API.
+let htmlComentario;
+async function linkFirmado(src) {
+  const id = /user-attachments\/assets\/([0-9a-f-]{36})/.exec(src)?.[1];
+  const token = process.env.GH_TOKEN_LECTURA || process.env.GH_TOKEN;
+  if (!id || !token) return null;
+  if (htmlComentario === undefined) {
+    const r = await fetch(`https://api.github.com/${rutaApi(datos)}`, {
+      headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github.full+json" },
+    });
+    htmlComentario = r.ok ? (await r.json()).body_html || "" : "";
+  }
+  const m = new RegExp(`src="([^"]*${id}[^"]*)"`).exec(htmlComentario);
+  return m ? m[1].replaceAll("&amp;", "&") : null;
+}
+
 let nuevas = 0;
 for (const { src, alt } of datos.imagenes) {
   const url = src.startsWith("/") ? "https://github.com" + src : src;
@@ -47,6 +75,10 @@ for (const { src, alt } of datos.imagenes) {
   // Algunos adjuntos (user-attachments) dan 404 sin sesión aunque el repo sea público.
   if (r.status === 404 && process.env.GH_TOKEN) {
     r = await fetch(url, { redirect: "follow", headers: { Authorization: `token ${process.env.GH_TOKEN}` } });
+  }
+  if (r.status === 404) {
+    const firmado = await linkFirmado(url);
+    if (firmado) r = await fetch(firmado, { redirect: "follow" });
   }
   if (!r.ok) {
     console.log(`::warning::no se pudo descargar (${r.status}): ${url}`);
