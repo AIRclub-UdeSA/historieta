@@ -67,8 +67,19 @@ async function linkFirmado(src) {
   return m ? m[1].replaceAll("&amp;", "&") : null;
 }
 
+// El título de cada viñeta sale del texto alternativo de la imagen. GitHub pone "image" al
+// pegarla, y a veces queda el nombre del archivo: eso no es un título.
+function titulo(alt) {
+  const t = (alt || "").trim();
+  if (/^(image|imagen|screenshot|captura)$/i.test(t)) return "";
+  if (!/\s/.test(t) && /[-_.]/.test(t)) return "";
+  return t;
+}
+
 let nuevas = 0;
-for (const { src, alt } of datos.imagenes) {
+let actualizadas = 0;
+for (const { src, alt: altOriginal } of datos.imagenes) {
+  const alt = titulo(altOriginal);
   const url = src.startsWith("/") ? "https://github.com" + src : src;
   if (BOTS.test(url)) continue;
   let r = await fetch(url, { redirect: "follow" });
@@ -93,7 +104,16 @@ for (const { src, alt } of datos.imagenes) {
   // En descripciones de PR/issue casi todo son capturas (PNG); solo se guardan los JPG.
   if (datos.tipo.endsWith("body") && ext !== "jpg") continue;
   const sha256 = crypto.createHash("sha256").update(buf).digest("hex");
-  if (vistos.has(sha256)) continue;
+  if (vistos.has(sha256)) {
+    // Si editaron el comentario para ponerle título a una imagen ya archivada, se actualiza.
+    const previa = lista.find((x) => x.sha256 === sha256);
+    if (alt && previa.url === datos.url && previa.alt !== alt) {
+      previa.alt = alt;
+      actualizadas++;
+      console.log(`título actualizado en ${previa.archivo}: ${alt}`);
+    }
+    continue;
+  }
   const archivo = `archivo/${datos.fecha.slice(0, 10)}-${datos.repo}-${datos.num ?? "x"}-${sha256.slice(0, 10)}.${ext}`;
   fs.mkdirSync("archivo", { recursive: true });
   fs.writeFileSync(archivo, buf);
@@ -107,4 +127,4 @@ for (const { src, alt } of datos.imagenes) {
 lista.sort((a, b) => a.fecha.localeCompare(b.fecha));
 fs.mkdirSync("data", { recursive: true });
 fs.writeFileSync(indice, JSON.stringify(lista, null, 2) + "\n");
-console.log(`${nuevas} imagen(es) nueva(s)`);
+console.log(`${nuevas} imagen(es) nueva(s), ${actualizadas} título(s) actualizado(s)`);

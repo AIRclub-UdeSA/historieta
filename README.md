@@ -34,6 +34,19 @@ La misma imagen no se guarda dos veces: se compara por su hash (`sha256`).
 
 Como no hay un filtro que distinga caricaturas de capturas, de vez en cuando se cuela alguna captura de un comentario. Se saca a mano: ver [Sacar una imagen de la historieta](#sacar-una-imagen-de-la-historieta).
 
+### Ponerle título a una viñeta
+
+El título que se ve en la historieta sale del **texto alternativo** (`alt`) de la imagen. Cuando pegás una imagen en GitHub, se inserta así:
+
+```html
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/..." />
+```
+
+Cambiá `alt="image"` por el título que quieras, por ejemplo `alt="Raphael y Terminator encadenando el contenedor"`. En markdown es lo que va entre corchetes: `![Mi título](https://...)`.
+
+- Si el `alt` es `image` o un nombre de archivo (sin espacios, con guiones, guiones bajos o puntos), la viñeta se muestra sin título.
+- Si ya la publicaste sin título, editá el comentario y cambiale el `alt`: la viñeta se actualiza sola en unos segundos.
+
 ## Qué hay en el repo
 
 | Ruta | Qué es |
