@@ -880,5 +880,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-08T01:00:51Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/24#issuecomment-6049982390"
+  },
+  {
+    "archivo": "archivo/2026-10-08-jar_organizacion-26-efea761ec7.jpg",
+    "sha256": "efea761ec7a39d7642dbb6cb5c8140828c7f4a23dcc7d62ac11f6d582f485e63",
+    "ancho": 1376,
+    "alto": 768,
+    "src": "https://github.com/user-attachments/assets/7c2ac8ff-6c7b-417b-97ce-bf2674411285",
+    "alt": "Terminator da vuelta el mapa del laberinto: ¡ahora sí coincide!",
+    "repo": "jar_organizacion",
+    "num": 26,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-08T22:06:46Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/26#pullrequestreview-5463413873"
   }
 ]
