@@ -61,6 +61,7 @@ jobs:
         if: ${{ !inputs.simular }}
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_TOKEN_LECTURA: ${{ steps.app.outputs.token }}
         run: |
           while IFS= read -r datos; do
             [ -n "$datos" ] && node scripts/guardar.mjs "$datos"

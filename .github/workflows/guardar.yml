@@ -36,9 +36,21 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
+      # Para pedir el link firmado de adjuntos privados, también en repos privados de la org.
+      - name: Token de la App para leer la org
+        id: lectura
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.HISTORIETA_APP_ID }}
+          private-key: ${{ secrets.HISTORIETA_APP_PRIVATE_KEY }}
+          owner: AIRclub-UdeSA
+          permission-issues: read
+          permission-pull-requests: read
+          permission-metadata: read
       - name: Descargar y archivar
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_TOKEN_LECTURA: ${{ steps.lectura.outputs.token }}
           DATOS: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload.datos) || inputs.datos }}
         run: node scripts/guardar.mjs "$DATOS"
       - name: Commit
