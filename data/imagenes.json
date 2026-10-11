@@ -908,5 +908,61 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-11T14:31:14Z",
     "url": "https://github.com/AIRclub-UdeSA/yahboom_rosmaster/pull/78#issuecomment-6110078875"
+  },
+  {
+    "archivo": "archivo/2026-10-11-airclub-site-52-84ddab9758.jpg",
+    "sha256": "84ddab97584eb9668d14e3be3715b4d009d3714c0bda8780a7085915078ebdfb",
+    "ancho": 1932,
+    "alto": 1212,
+    "src": "https://raw.githubusercontent.com/AIRclub-UdeSA/airclub-site/69b5b1dd32d6c806ca065dae39505f9192e80f78/.github/assets/landing-conexion-recorrido.jpg",
+    "alt": "",
+    "repo": "airclub-site",
+    "num": 52,
+    "tipo": "pr-body",
+    "autor": "juan-kaplan",
+    "fecha": "2026-10-11T14:46:33Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/52"
+  },
+  {
+    "archivo": "archivo/2026-10-11-airclub-site-52-d4bb96f927.jpg",
+    "sha256": "d4bb96f9272bed6819b4e0c635a6b2f43fcc79b63e7f9e7ff2258460151b90d1",
+    "ancho": 1932,
+    "alto": 806,
+    "src": "https://raw.githubusercontent.com/AIRclub-UdeSA/airclub-site/69b5b1dd32d6c806ca065dae39505f9192e80f78/.github/assets/landing-conexion-slalom.jpg",
+    "alt": "",
+    "repo": "airclub-site",
+    "num": 52,
+    "tipo": "pr-body",
+    "autor": "juan-kaplan",
+    "fecha": "2026-10-11T14:46:33Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/52"
+  },
+  {
+    "archivo": "archivo/2026-10-11-airclub-site-52-3a8bf75081.jpg",
+    "sha256": "3a8bf75081dd65bcde2e9209c8e7f538e2a67cf1ec3a588b9353b04cd176765e",
+    "ancho": 1018,
+    "alto": 541,
+    "src": "https://raw.githubusercontent.com/AIRclub-UdeSA/airclub-site/69b5b1dd32d6c806ca065dae39505f9192e80f78/.github/assets/landing-conexion-slalom-mobile.jpg",
+    "alt": "",
+    "repo": "airclub-site",
+    "num": 52,
+    "tipo": "pr-body",
+    "autor": "juan-kaplan",
+    "fecha": "2026-10-11T14:46:33Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/52"
+  },
+  {
+    "archivo": "archivo/2026-10-11-airclub-site-52-55e5796e81.jpg",
+    "sha256": "55e5796e8135a57f4b6447abb0ba137eca6fb3e7b990842fd37b55e99c85afd9",
+    "ancho": 1932,
+    "alto": 400,
+    "src": "https://raw.githubusercontent.com/AIRclub-UdeSA/airclub-site/69b5b1dd32d6c806ca065dae39505f9192e80f78/.github/assets/landing-conexion-tema.jpg",
+    "alt": "",
+    "repo": "airclub-site",
+    "num": 52,
+    "tipo": "pr-body",
+    "autor": "juan-kaplan",
+    "fecha": "2026-10-11T14:46:33Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/52"
   }
 ]
