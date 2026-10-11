@@ -894,5 +894,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-08T22:06:46Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/26#pullrequestreview-5463413873"
+  },
+  {
+    "archivo": "archivo/2026-10-11-yahboom_rosmaster-78-fefaa67806.png",
+    "sha256": "fefaa6780615b3be7a0b8b0b798b83fd69ad2f8ae69ea93e5d4e0ef33c2eab2d",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/cf892ae6-e760-42df-9024-df2a71d18149",
+    "alt": "Terminator le hace la mudanza a EVE y le cobra en test_depend. Hasta la vista, exec_depend",
+    "repo": "yahboom_rosmaster",
+    "num": 78,
+    "tipo": "comment",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-11T14:31:14Z",
+    "url": "https://github.com/AIRclub-UdeSA/yahboom_rosmaster/pull/78#issuecomment-6110078875"
   }
 ]
