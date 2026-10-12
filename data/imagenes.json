@@ -1454,5 +1454,19 @@
     "autor": "fragonesi",
     "fecha": "2026-10-12T21:32:50Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/64"
+  },
+  {
+    "archivo": "archivo/2026-10-12-jar_site-58-978114b3f8.png",
+    "sha256": "978114b3f8f59407339ec220b1fd84d6a2dd5b59e4afbf465d6364ef5aeb8938",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/89a9f47a-6f77-4e95-b79c-adaeee6bc1cb",
+    "alt": "⭐ Hasta la vista, simulador: EVE trajo el bag y el T-800 encontró las dos cajas",
+    "repo": "jar_site",
+    "num": 58,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-12T22:30:31Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/58#pullrequestreview-5496647647"
   }
 ]
