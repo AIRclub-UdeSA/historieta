@@ -1482,5 +1482,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-12T22:39:24Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_workshops/pull/63#pullrequestreview-5496728329"
+  },
+  {
+    "archivo": "archivo/2026-10-12-airclub-site-64-4c53570f2c.png",
+    "sha256": "4c53570f2cf631f08c372b5fde75084845199be12ba6462c1d7301d469120bdf",
+    "ancho": 687,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/8df4b084-7da6-486c-852e-e63b3d7a983d",
+    "alt": "Hasta la vista, overflow. Raphael ven y haz tu trabajo como diseñador!",
+    "repo": "airclub-site",
+    "num": 64,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-12T22:45:20Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/64#pullrequestreview-5496774769"
   }
 ]
