@@ -1076,5 +1076,19 @@
     "autor": "juan-kaplan",
     "fecha": "2026-10-12T00:03:24Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/56#pullrequestreview-5485603574"
+  },
+  {
+    "archivo": "archivo/2026-10-12-airclub-site-57-c2a51788a6.png",
+    "sha256": "c2a51788a62ae19729dba2652c182fcc80bc96cbc46d8c914987aaa145b4cbbf",
+    "ancho": 1024,
+    "alto": 572,
+    "src": "https://github.com/user-attachments/assets/18424c11-3f54-424a-b5dc-1a13716957e8",
+    "alt": "Raphael y Terminator bajan las armas: EVE pasó la review",
+    "repo": "airclub-site",
+    "num": 57,
+    "tipo": "comment",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-12T00:57:17Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/57#issuecomment-6115860180"
   }
 ]
