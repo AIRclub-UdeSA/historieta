@@ -1468,5 +1468,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-12T22:30:31Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/58#pullrequestreview-5496647647"
+  },
+  {
+    "archivo": "archivo/2026-10-12-jar_workshops-63-4942262f42.png",
+    "sha256": "4942262f42331d3640c7abdb0b1b46e3bb386186a191c17e2781507f98e1894a",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/4fcd204d-c546-48fa-9ee9-4a89d023acc7",
+    "alt": "Hasta la vista, Corrélo",
+    "repo": "jar_workshops",
+    "num": 63,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-12T22:39:24Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_workshops/pull/63#pullrequestreview-5496728329"
   }
 ]
