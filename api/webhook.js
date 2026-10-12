@@ -3,7 +3,7 @@
 import crypto from "node:crypto";
 
 const REPO = "AIRclub-UdeSA/historieta";
-const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^)\s]+)/g;
+const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[([^\]]*)\]\(([^)\s]+)/g;
 const ALT = /alt="([^"]*)"/;
 
 // Qué texto mirar según el evento.
@@ -11,8 +11,6 @@ const TEXTO = {
   issue_comment: (p) => ["comment", p.comment],
   pull_request_review: (p) => ["review", p.review],
   pull_request_review_comment: (p) => ["inline", p.comment],
-  issues: (p) => ["issue-body", p.issue],
-  pull_request: (p) => ["pr-body", p.pull_request],
 };
 
 function firmaValida(cuerpo, firma) {
@@ -27,8 +25,8 @@ function firmaValida(cuerpo, firma) {
 function imagenes(texto) {
   const out = [];
   for (const m of (texto || "").matchAll(IMG)) {
-    const alt = ALT.exec(m[0]);
-    out.push({ src: m[1] || m[2], alt: alt ? alt[1] : "" });
+    const alt = m[1] ? ALT.exec(m[0])?.[1] : m[2];
+    out.push({ src: m[1] || m[3], alt: alt || "" });
   }
   return out;
 }

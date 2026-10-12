@@ -4,6 +4,11 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 
 const datos = JSON.parse(process.argv[2]);
+// En las descripciones de PRs e issues solo hay capturas de pantalla: nunca se guardan.
+if (datos.tipo.endsWith("body")) {
+  console.log("descripción de PR o issue: no se guarda");
+  process.exit(0);
+}
 const indice = "data/imagenes.json";
 const lista = fs.existsSync(indice) ? JSON.parse(fs.readFileSync(indice, "utf8")) : [];
 const vistos = new Set(lista.map((x) => x.sha256));
@@ -101,8 +106,6 @@ for (const { src, alt: altOriginal } of datos.imagenes) {
     console.log(`::warning::no es una imagen: ${url}`);
     continue;
   }
-  // En descripciones de PR/issue casi todo son capturas (PNG); solo se guardan los JPG.
-  if (datos.tipo.endsWith("body") && ext !== "jpg") continue;
   const sha256 = crypto.createHash("sha256").update(buf).digest("hex");
   if (vistos.has(sha256)) {
     // Si editaron el comentario para ponerle título a una imagen ya archivada, se actualiza.

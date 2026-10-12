@@ -6,7 +6,7 @@ import fs from "node:fs";
 const ORG = "AIRclub-UdeSA";
 const DIAS = Number(process.argv[2] || 3);
 const desde = new Date(Date.now() - DIAS * 86400e3).toISOString();
-const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^)\s]+)/g;
+const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[([^\]]*)\]\(([^)\s]+)/g;
 const ALT = /alt="([^"]*)"/;
 
 const archivadas = new Set(
@@ -31,8 +31,8 @@ async function api(ruta) {
 function imagenes(texto) {
   const out = [];
   for (const m of (texto || "").matchAll(IMG)) {
-    const alt = ALT.exec(m[0]);
-    out.push({ src: m[1] || m[2], alt: alt ? alt[1] : "" });
+    const alt = m[1] ? ALT.exec(m[0])?.[1] : m[2];
+    out.push({ src: m[1] || m[3], alt: alt || "" });
   }
   return out;
 }
@@ -55,11 +55,9 @@ const repos = (await api(`installation/repositories?per_page=100`))
   .filter((r) => r.owner.login === ORG && r.name !== "historieta" && !r.archived);
 
 for (const { name: repo } of repos) {
-  // Issues y PRs tocados en la ventana: descripción, y para los PRs también sus reviews.
+  // PRs tocados en la ventana: sus reviews (las descripciones de PRs e issues no se guardan).
   for (const it of await api(`repos/${ORG}/${repo}/issues?state=all&since=${desde}&per_page=100`)) {
-    const esPR = Boolean(it.pull_request);
-    if (it.created_at >= desde) revisar(repo, it.number, esPR ? "pr-body" : "issue-body", it);
-    if (esPR) {
+    if (it.pull_request) {
       for (const rv of await api(`repos/${ORG}/${repo}/pulls/${it.number}/reviews?per_page=100`)) {
         if (rv.submitted_at >= desde) revisar(repo, it.number, "review", rv);
       }
