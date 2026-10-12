@@ -76,8 +76,14 @@ function titulo(alt) {
   return t;
 }
 
-let nuevas = 0;
-let actualizadas = 0;
+// En descripciones de PR/issue casi todo son capturas (PNG); solo se guardan los JPG. Y aun así
+// se cuelan capturas en JPG: las que vienen de a muchas (galerías de antes/después) o con un
+// título de antes/después no son caricaturas.
+const MAX_JPG_EN_DESCRIPCION = 2;
+const CAPTURA = /\b(antes|despu[eé]s|before|after)\b/i;
+const esDescripcion = datos.tipo.endsWith("body");
+
+let candidatas = [];
 for (const { src, alt: altOriginal } of datos.imagenes) {
   const alt = titulo(altOriginal);
   const url = src.startsWith("/") ? "https://github.com" + src : src;
@@ -101,8 +107,19 @@ for (const { src, alt: altOriginal } of datos.imagenes) {
     console.log(`::warning::no es una imagen: ${url}`);
     continue;
   }
-  // En descripciones de PR/issue casi todo son capturas (PNG); solo se guardan los JPG.
-  if (datos.tipo.endsWith("body") && ext !== "jpg") continue;
+  if (esDescripcion && ext !== "jpg") continue;
+  candidatas.push({ src, alt, buf, ext });
+}
+
+if (esDescripcion && candidatas.length > MAX_JPG_EN_DESCRIPCION) {
+  console.log(`descripción con ${candidatas.length} JPG: se toman como capturas y no se guardan`);
+  candidatas = [];
+}
+if (esDescripcion) candidatas = candidatas.filter((x) => !CAPTURA.test(x.alt));
+
+let nuevas = 0;
+let actualizadas = 0;
+for (const { src, alt, buf, ext } of candidatas) {
   const sha256 = crypto.createHash("sha256").update(buf).digest("hex");
   if (vistos.has(sha256)) {
     // Si editaron el comentario para ponerle título a una imagen ya archivada, se actualiza.

@@ -6,7 +6,7 @@ import fs from "node:fs";
 const ORG = "AIRclub-UdeSA";
 const DIAS = Number(process.argv[2] || 3);
 const desde = new Date(Date.now() - DIAS * 86400e3).toISOString();
-const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^)\s]+)/g;
+const IMG = /<img[^>]*src="([^"]+)"[^>]*>|!\[([^\]]*)\]\(([^)\s]+)/g;
 const ALT = /alt="([^"]*)"/;
 
 const archivadas = new Set(
@@ -31,8 +31,8 @@ async function api(ruta) {
 function imagenes(texto) {
   const out = [];
   for (const m of (texto || "").matchAll(IMG)) {
-    const alt = ALT.exec(m[0]);
-    out.push({ src: m[1] || m[2], alt: alt ? alt[1] : "" });
+    const alt = m[1] ? ALT.exec(m[0])?.[1] : m[2];
+    out.push({ src: m[1] || m[3], alt: alt || "" });
   }
   return out;
 }
