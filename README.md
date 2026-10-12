@@ -26,9 +26,8 @@ Además, el workflow **"barrido"** corre todos los días a las 03:17 (hora de Ar
 ### Qué imágenes se guardan
 
 - **Comentarios, reviews y comentarios en el código:** todas las imágenes.
-- **Descripciones de PRs e issues:** solo los JPG, porque ahí casi todo son capturas de pantalla en PNG. Y de los JPG:
-  - si la descripción trae más de 2, no se guarda ninguno: son galerías de capturas;
-  - no se guarda el que tenga un título con "antes", "después", "before" o "after".
+- **Descripciones de PRs:** nunca, porque ahí solo hay capturas de pantalla.
+- **Descripciones de issues:** solo los JPG, porque ahí casi todo son capturas de pantalla en PNG.
 - **Bots** (Vercel, Copilot, dependabot): nunca.
 - **Este mismo repo:** el barrido lo saltea.
 
