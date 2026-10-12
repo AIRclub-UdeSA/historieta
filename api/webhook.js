@@ -11,7 +11,6 @@ const TEXTO = {
   issue_comment: (p) => ["comment", p.comment],
   pull_request_review: (p) => ["review", p.review],
   pull_request_review_comment: (p) => ["inline", p.comment],
-  issues: (p) => ["issue-body", p.issue],
 };
 
 function firmaValida(cuerpo, firma) {

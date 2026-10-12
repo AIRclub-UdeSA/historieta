@@ -55,11 +55,9 @@ const repos = (await api(`installation/repositories?per_page=100`))
   .filter((r) => r.owner.login === ORG && r.name !== "historieta" && !r.archived);
 
 for (const { name: repo } of repos) {
-  // Issues y PRs tocados en la ventana: descripción de los issues (la de los PRs no) y reviews de los PRs.
+  // PRs tocados en la ventana: sus reviews (las descripciones de PRs e issues no se guardan).
   for (const it of await api(`repos/${ORG}/${repo}/issues?state=all&since=${desde}&per_page=100`)) {
-    const esPR = Boolean(it.pull_request);
-    if (!esPR && it.created_at >= desde) revisar(repo, it.number, "issue-body", it);
-    if (esPR) {
+    if (it.pull_request) {
       for (const rv of await api(`repos/${ORG}/${repo}/pulls/${it.number}/reviews?per_page=100`)) {
         if (rv.submitted_at >= desde) revisar(repo, it.number, "review", rv);
       }
