@@ -1496,5 +1496,33 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-12T22:45:20Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/64#pullrequestreview-5496774769"
+  },
+  {
+    "archivo": "archivo/2026-10-16-airclub-site-90-bce8aef3be.png",
+    "sha256": "bce8aef3be3964ea24e7c1eab7206d521b369a07b1821b2077014328bb9eca12",
+    "ancho": 1440,
+    "alto": 470,
+    "src": "https://github.com/AIRclub-UdeSA/airclub-site/blob/e7fc8c87083b8e57c796c4a97761eb344e2b983c/glb-lidar/lidar-sin-arreglo.png?raw=true",
+    "alt": "Barrido del LiDAR con el GLB comprimido, sin el arreglo: tiñe toda la pista",
+    "repo": "airclub-site",
+    "num": 90,
+    "tipo": "comment",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-16T14:47:46Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/90#issuecomment-6218058960"
+  },
+  {
+    "archivo": "archivo/2026-10-16-airclub-site-90-686c522913.png",
+    "sha256": "686c5229135be73abf697349857d5af5c94bc7e0c69d337df0aec6dc82440484",
+    "ancho": 1440,
+    "alto": 470,
+    "src": "https://github.com/AIRclub-UdeSA/airclub-site/blob/e7fc8c87083b8e57c796c4a97761eb344e2b983c/glb-lidar/lidar-con-arreglo.png?raw=true",
+    "alt": "Barrido del LiDAR con el GLB comprimido y el arreglo: igual que en producción",
+    "repo": "airclub-site",
+    "num": 90,
+    "tipo": "comment",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-16T14:47:46Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/90#issuecomment-6218058960"
   }
 ]
