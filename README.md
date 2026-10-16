@@ -58,11 +58,22 @@ Cambiá `alt="image"` por el título que quieras, por ejemplo `alt="Raphael y Te
 | `api/webhook.js` | El receptor de avisos de la App. Corre en Vercel. |
 | `scripts/guardar.mjs` | Descarga y archiva las imágenes de un comentario. Lo usan los dos workflows. |
 | `scripts/barrer.mjs` | Recorre los repos de la org buscando imágenes sin archivar. |
+| `scripts/ocultar.mjs` | Agrega a `data/excluidas.json` las viñetas que se le pasan por número. |
 | `.github/workflows/guardar.yml` | Guarda las imágenes que avisa la App. |
 | `.github/workflows/barrido.yml` | El barrido diario de respaldo. |
+| `.github/workflows/ocultar.yml` | Saca viñetas de la página sin PR (se corre a mano). |
 | `.github/workflows/block-ai-coauthor.yml` | El check de co-autores de IA, igual que en los otros repos. |
 
 ## Sacar una imagen de la historieta
+
+Lo más rápido, sin PR (hace falta permiso de escritura en el repo, como el equipo `founders`):
+
+1. Andá a **Actions → ocultar → Run workflow**.
+2. Poné los números de viñeta como se ven en la página (ej: `69, 70`) y, si querés, el motivo.
+
+El bot agrega las imágenes a `data/excluidas.json` y pushea a `main`. El commit dice quién lo pidió y qué viñetas sacó; para volver a mostrarlas, revertilo.
+
+A mano, con PR:
 
 1. Buscá la imagen en `data/imagenes.json` y copiá su `sha256` (o su `archivo`).
 2. Agregalo a la lista de `data/excluidas.json`.

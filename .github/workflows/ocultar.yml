@@ -1,0 +1,67 @@
+name: ocultar
+
+# Saca viñetas de la página sin abrir un PR. Se corre a mano desde Actions → ocultar → Run workflow;
+# GitHub solo deja hacerlo a quien tiene permiso de escritura en el repo (el equipo founders).
+on:
+  workflow_dispatch:
+    inputs:
+      numeros:
+        description: "Números de viñeta como se ven en la página, separados por coma (ej: 69, 70)"
+        required: true
+      motivo:
+        description: "Por qué se ocultan (queda en el commit)"
+        required: false
+
+# Comparte el grupo con "guardar" y "barrido" para que no choquen al hacer push.
+concurrency:
+  group: guardar
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  ocultar:
+    runs-on: ubuntu-latest
+    steps:
+      # main está protegida: solo la App airclub-historieta puede pushear directo (excepción del ruleset).
+      - name: Token de la App para escribir en historieta
+        id: escritura
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.HISTORIETA_APP_ID }}
+          private-key: ${{ secrets.HISTORIETA_APP_PRIVATE_KEY }}
+          repositories: historieta
+          permission-contents: write
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ steps.escritura.outputs.token }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      # shell: bash activa pipefail: sin eso, el tee esconde el error de un número inválido y el run queda en verde.
+      - name: Ocultar
+        shell: bash
+        env:
+          NUMEROS: ${{ inputs.numeros }}
+        run: node scripts/ocultar.mjs "$NUMEROS" | tee ocultas.txt
+      - name: Commit
+        env:
+          NUMEROS: ${{ inputs.numeros }}
+          MOTIVO: ${{ inputs.motivo }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          git config user.name "airclub-historieta[bot]"
+          git config user.email "339344225+airclub-historieta[bot]@users.noreply.github.com"
+          git add data/excluidas.json
+          git diff --cached --quiet && exit 0
+          {
+            echo "Ocultar las viñetas $NUMEROS"
+            echo
+            echo "Pedido por @$ACTOR.${MOTIVO:+ Motivo: $MOTIVO}"
+            echo
+            cat ocultas.txt
+          } > mensaje.txt
+          git commit -F mensaje.txt
+          git pull --rebase
+          git push
