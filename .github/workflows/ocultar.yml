@@ -39,7 +39,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
+      # shell: bash activa pipefail: sin eso, el tee esconde el error de un número inválido y el run queda en verde.
       - name: Ocultar
+        shell: bash
         env:
           NUMEROS: ${{ inputs.numeros }}
         run: node scripts/ocultar.mjs "$NUMEROS" | tee ocultas.txt
