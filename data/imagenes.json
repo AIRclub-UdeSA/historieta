@@ -1552,5 +1552,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-16T14:47:54Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/90#pullrequestreview-5549436336"
+  },
+  {
+    "archivo": "archivo/2026-10-20-airclub-site-116-01d7337feb.png",
+    "sha256": "01d7337febdd08b6938797a37986d6d82985d889e4eb71c325266786580b01f8",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/7131511a-35d3-4066-bf5d-7e7d0fa7a583",
+    "alt": "Hasta la vista, layout shift",
+    "repo": "airclub-site",
+    "num": 116,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-20T17:53:37Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/116#pullrequestreview-5589295880"
   }
 ]
