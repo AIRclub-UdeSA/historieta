@@ -1566,5 +1566,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-20T17:53:37Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/116#pullrequestreview-5589295880"
+  },
+  {
+    "archivo": "archivo/2026-10-20-airclub-site-119-c6124419a5.png",
+    "sha256": "c6124419a54e4ef159a5e75f152dbf38191833fdbb7d29dbfc1ac3125011d75e",
+    "ancho": 768,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/ce55a7f2-06f4-4098-8617-7b2057b7438b",
+    "alt": "Raphael sube el telón un 1% y el LCP llega 1,1 s antes",
+    "repo": "airclub-site",
+    "num": 119,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-20T22:23:43Z",
+    "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/119#pullrequestreview-5592541130"
   }
 ]
