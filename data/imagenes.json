@@ -1580,5 +1580,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-20T22:23:43Z",
     "url": "https://github.com/AIRclub-UdeSA/airclub-site/pull/119#pullrequestreview-5592541130"
+  },
+  {
+    "archivo": "archivo/2026-10-22-jar_site-62-724f74e17d.png",
+    "sha256": "724f74e17d024ea25946ab53781b0ca4eed49d476fedc9e01e64b3b30663e052",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/718cb075-2bab-49e1-8d37-f29bb3ff1db0",
+    "alt": "I'll be back… él no: el Boognish termina la validación de los workshops",
+    "repo": "jar_site",
+    "num": 62,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-22T13:49:51Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/62#pullrequestreview-5615270993"
   }
 ]
