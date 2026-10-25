@@ -1608,5 +1608,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-25T12:53:46Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/33#pullrequestreview-5643275354"
+  },
+  {
+    "archivo": "archivo/2026-10-25-jar_site-60-baf18e5394.png",
+    "sha256": "baf18e5394c155e9037be4ac8306cec9c35637e267942b23a4b1df1654fe98c4",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/38a4ef36-fa84-45f3-b3ad-44c98b926618",
+    "alt": "Volveré… a las ?? hs del 3/11",
+    "repo": "jar_site",
+    "num": 60,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-25T13:05:00Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/60#pullrequestreview-5643317689"
   }
 ]
