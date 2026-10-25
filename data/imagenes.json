@@ -1622,5 +1622,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-25T13:05:00Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/60#pullrequestreview-5643317689"
+  },
+  {
+    "archivo": "archivo/2026-10-25-jar_organizacion-36-e2788d4e0a.png",
+    "sha256": "e2788d4e0a021a3f035eff6eca7c93faaaa87a30a31de09160d78da343be25ff",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/a5d9b639-0998-459b-94b1-bb4987adedd1",
+    "alt": "Terminator: «Vine del futuro a hacer las reviews que Optimus no hizo»",
+    "repo": "jar_organizacion",
+    "num": 36,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-25T13:17:36Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/36#pullrequestreview-5643355362"
   }
 ]
