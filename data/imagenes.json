@@ -1594,5 +1594,19 @@
     "autor": "LucioLuque",
     "fecha": "2026-10-22T13:49:51Z",
     "url": "https://github.com/AIRclub-UdeSA/jar_site/pull/62#pullrequestreview-5615270993"
+  },
+  {
+    "archivo": "archivo/2026-10-25-jar_organizacion-33-0b2ae61dd3.png",
+    "sha256": "0b2ae61dd3fcb83d6bdde16b1935f1d499a27c307ca89affc0621622b55732fc",
+    "ancho": 1024,
+    "alto": 1024,
+    "src": "https://github.com/user-attachments/assets/d532e605-b786-457a-81df-e9f30f93711f",
+    "alt": "Autobots, congelen los SHA",
+    "repo": "jar_organizacion",
+    "num": 33,
+    "tipo": "review",
+    "autor": "LucioLuque",
+    "fecha": "2026-10-25T12:53:46Z",
+    "url": "https://github.com/AIRclub-UdeSA/jar_organizacion/pull/33#pullrequestreview-5643275354"
   }
 ]
